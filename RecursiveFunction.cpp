@@ -14,11 +14,12 @@ using namespace std;
 
 // Global variables
 
-unsigned long int moveNum = 1;
+int moveNum = 1;
+unsigned long int attempts = 1;
 int board[8][8] = { };
 //Function Protos
 bool moveKnight(int row, int col, int moveNum);
-void printBoard(int moveNum);
+void printBoard(int attempts);
 
 int main()
 { 
@@ -42,9 +43,9 @@ bool moveKnight(int row, int col, int moveNum)
 		return false;
 	}
 	board[row][col] = moveNum;
-	printBoard(moveNum);
-	
-	system("pause");
+	printBoard(attempts);
+
+	attempts++;
 
 	if (moveNum == 64)
 	{
@@ -75,12 +76,28 @@ bool moveKnight(int row, int col, int moveNum)
 	{
 		return true;
 	}
-	board[row][col] = 0;
+	cout << "Move 6 " << row + 1 << col - 2 << endl;
+	if (moveKnight(row + 1, col - 2, moveNum + 1)) // Move '6' 
+	{
+		return true;
+	}
+	cout << "Move 7 " << row - 1 << col - 2 << endl;
+	if (moveKnight(row - 1, col - 2, moveNum + 1)) // Move '7' 
+	{
+		return true;
+	}
+	cout << "Move 8 " << row - 2 << col - 1 << endl;
+	if (moveKnight(row - 2, col - 1, moveNum + 1)) // Move '8' 
+	{
+		return true;
+	} 
 
+	board[row][col] = 0;
+	printBoard(attempts);
 
 
 } 
-void printBoard(int moveNum)
+void printBoard(int attempts)
 {
 	for (auto& arr : board)
 	{
@@ -90,5 +107,5 @@ void printBoard(int moveNum)
 		}
 		cout << endl;
 	}
-	cout << moveNum;
+	cout << "Attempt: " << attempts << endl;
 }
