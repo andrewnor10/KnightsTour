@@ -43,6 +43,7 @@ bool moveKnight(int row, int col, int moveNum)
 	}
 	board[row][col] = moveNum;
 	printBoard(moveNum);
+	
 	system("pause");
 
 	if (moveNum == 64)
@@ -54,20 +55,25 @@ bool moveKnight(int row, int col, int moveNum)
 	{
 		return true; 
 	}
-	cout << "Move 2 " << row + 2 << col - 1 << endl;
-	if (moveKnight(row + 2, col - 1, moveNum + 1)) // Move '2' 
+	cout << "Move 2 " << row - 1 << col + 2 << endl;
+	if (moveKnight(row - 1, col + 2, moveNum + 1)) // Move '2' 
 	{
 		return true;
 	}
-	cout << "Move 3 " << row + 2 << col + 1 << endl;
-	if (moveKnight(row + 2, col + 1, moveNum + 1)) // Move '3' 
+	cout << "Move 3 " << row + 1 << col + 2 << endl;
+	if (moveKnight(row + 1, col + 2, moveNum + 1)) // Move '3' 
 	{
 		return true;
 	} 
-	cout << "Move 4  " << row + 2 << col + 1 << endl;
-	if (moveKnight(row + 2, col + 1, moveNum + 1)) // Move '4' 
+	cout << "Move 4  " << row - 2 << col + 1 << endl;
+	if (moveKnight(row - 2, col + 1, moveNum + 1)) // Move '4' 
 	{
 		return true; // this is an array + moves down | - moves up
+	}
+	cout << "Move 5 " << row - 1 << col + 2 << endl;
+	if (moveKnight(row + 2, col - 1, moveNum + 1)) // Move '5' 
+	{
+		return true;
 	}
 	board[row][col] = 0;
 
